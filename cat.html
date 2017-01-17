@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>test</title>
+<style type="text/css">
+
+  body{
+    background: black;
+    color: white;
+    text-align: center;
+    margin-top: 200px;
+    perspective: 300px;
+  }
+
+  body.white {
+    transition: 100ms;
+    background: red;
+  }
+
+  body.white .box div {
+    transition: 100ms;
+    background: black;
+  }
+
+  .box {
+    display: inline-block;
+    height: 400px;
+    width: 400px;
+    position: relative;
+    z-index: 1;
+    transform-style: preserve-3d;
+    -webkit-animation: slide 50s infinite;
+  }
+  box:hover {
+    background-color: red;
+  }
+  .top,
+  .left,
+  .front,
+  .right,
+  .behind,
+  .bottom {
+    top:0px;
+    left:0px;
+    position: absolute;
+    line-height: 300px;
+    height: 600px;
+    width: 600px;
+    backface-visibility: visible;
+    color: white;
+    font-size: 0;
+  }
+
+  .top:hover,
+  .left:hover,
+  .front:hover,
+  .right:hover,
+  .behind:hover,
+  .bottom:hover,
+  .bright {
+    transition: 100ms;
+    background-image: url("http://25.media.tumblr.com/c305253411c1a12e8cfef56f47acc07b/tumblr_mfluc4QVEx1r9uzkco1_500.png");
+    background-size: cover;
+  }
+
+  .top {
+    transform: rotateX(270deg) translateZ(-300px);
+  }
+  .left{
+   transform: rotateY(270deg) translateZ(300px);
+  }
+  .front{
+    transform: rotateY(180deg) translateZ(300px);
+  }
+  .right{
+    transform: rotateY(270deg) translateZ(-300px);
+  }
+  .behind{
+    transform: rotateY(180deg) translateZ(-300px);
+  }
+  .bottom {
+    transform: rotateX(270deg) translateZ(300px);
+  }
+
+  @-webkit-keyframes slide {
+  0%  { transform: rotateX(0) rotateY(0) rotateZ(0) translateZ(-10px)}
+  25%  { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translateZ(299px)}
+  50%  { transform: rotateX(3deg) rotateY(160deg) rotateZ(-360deg) translateZ(10px)}
+  75%  { transform: rotateX(360deg) rotateY(36deg) rotateZ(-30deg) translateZ(-49px)}
+  100%  { transform: rotateX(0) rotateY(0) rotateZ(0) translateZ(-10px)}
+}
+
+
+.popupcat { 
+  background-image: url("http://25.media.tumblr.com/c305253411c1a12e8cfef56f47acc07b/tumblr_mfluc4QVEx1r9uzkco1_500.png");
+  background-size: cover;
+  position: absolute;
+  height: 800px;
+  width: 800px;
+  top: 0px;
+  left: -700px;
+  z-index: 1000;
+  -webkit-animation: slideUpCat 5s infinite;
+  font-size: 200px; 
+
+}
+
+  @-webkit-keyframes slideUpCat {
+  0%  {  left: -700px; }
+  70%  {  left: -700px; }
+  95%  { left: 0;}
+  0%  {  left: -700px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <div class="top">top</div>
+  <div class="left">left</div>
+  <div class="front">front</div>
+  <div class="right">right</div>
+  <div class="behind">behind</div>
+  <div class="bottom">bottom</div>
+</div>
+<div class="box">
+  <div class="top">top</div>
+  <div class="left">left</div>
+  <div class="front">front</div>
+  <div class="right">right</div>
+  <div class="behind">behind</div>
+  <div class="bottom">bottom</div>
+</div>
+<div class="box">
+  <div class="top">top</div>
+  <div class="left">left</div>
+  <div class="front">front</div>
+  <div class="right">right</div>
+  <div class="behind">behind</div>
+  <div class="bottom">bottom</div>
+</div>
+
+<div class="box">
+  <div class="top">top</div>
+  <div class="left">left</div>
+  <div class="front">front</div>
+  <div class="right">right</div>
+  <div class="behind">behind</div>
+  <div class="bottom">bottom</div>
+</div>
+
+
+
+</div>
+<div class="popupcat">MJAU</div>
+
+
+
+
+<script type="text/javascript">
+  var divArray = document.querySelectorAll('.box div');
+  var isWhite = true;
+
+
+  function getRandomDiv(){
+    randomDivNr = Math.floor(divArray.length  - (divArray.length  * Math.random()));
+    nextChange = Math.floor(450  - (500  * Math.random()));
+
+    divArray[randomDivNr].style.backgroundColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+    divArray[randomDivNr].style.opacity = Math.random();
+
+    if(divArray[randomDivNr].classList.contains('bright')){
+      divArray[randomDivNr].classList.remove('bright');
+      getRandomDiv();
+      return;
+    } else {
+      divArray[randomDivNr].classList.add('bright');
+      
+    }
+    setTimeout(getRandomDiv, nextChange)
+  }
+
+  setTimeout(getRandomDiv, 50);
+
+</script>
+
+</body>
+</html>
